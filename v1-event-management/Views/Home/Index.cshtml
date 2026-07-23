@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Event Management Web App</h1>
+    <p class="text-muted">A role-based event management system built with ASP.NET Core Identity.</p>
+
+    @if (User.Identity!.IsAuthenticated)
+    {
+        <div class="mt-4">
+            <h4>Hello, <span class="text-primary">@User.Identity.Name</span>!</h4>
+            <p>You are logged in. Use the navigation bar to access your features.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">New User?</h5>
+                        <p class="card-text">Register to create your account and enroll for events.</p>
+                        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Already Registered?</h5>
+                        <p class="card-text">Login to register for events and manage your profile.</p>
+                        <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="mt-4">
+        <h5>Upcoming Events</h5>
+        <a class="btn btn-outline-primary" asp-controller="EventInfo" asp-action="Index">Browse Events</a>
+    </div>
+</div>

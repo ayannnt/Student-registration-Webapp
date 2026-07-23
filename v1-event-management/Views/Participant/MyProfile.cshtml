@@ -1,0 +1,47 @@
+@model EventManagementWebApp.Models.Participant
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+@if (Model == null)
+{
+    <h5 class="text-warning">
+        Your Profile has not been registered.
+        Click <a asp-controller="Participant" asp-action="Create"
+             class="text-primary text-decoration-underline">
+        📝 Register for Event
+    </a>
+</h5>
+}
+else
+{
+    <h3 class="text-primary">Your Profile Registered for Event</h3>
+    <hr />
+    <table class="table table-striped">
+        <tr>
+            <td>FullName</td>
+            <td>@Model.FullName</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>@Model.Age</td>
+        </tr>
+        <tr>
+            <td>Registered for Event</td>
+            <td>@Model.Event.EventName</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit Details</a> |
+                <a asp-action="Delete" asp-route-id="@Model.Id"
+                   onclick="return confirm('Do you wish to delete this registration?');"
+                   class="btn btn-danger">Delete Registration</a>
+            </td>
+        </tr>
+    </table>
+}

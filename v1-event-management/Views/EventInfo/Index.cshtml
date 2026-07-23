@@ -1,0 +1,43 @@
+@model IEnumerable<EventManagementWebApp.Models.EventInfo>
+@{
+    ViewData["Title"] = "Events";
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Create" class="btn btn-primary mb-2">Create Event</a>
+}
+<h3>List of Events</h3>
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <table class="table table-striped">
+           <thead>
+               <tr>
+                   <th>Event Name</th>
+                   <th>Location</th>
+                   <th></th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach (var e in Model)
+                {
+                    <tr>
+                        <td>@e.EventName</td>
+                        <td>@e.EventLocation</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@e.EventId">View Details</a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <text> | </text>
+                                <a asp-action="Edit" asp-route-id="@e.EventId">Edit</a>
+                                <text> | </text>
+                                <a asp-action="Delete" asp-route-id="@e.EventId" class="text-danger">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

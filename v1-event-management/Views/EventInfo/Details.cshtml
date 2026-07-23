@@ -1,0 +1,32 @@
+@model EventManagementWebApp.Models.EventInfo
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<h4 class="text-primary">Details of Event</h4>
+<hr />
+<table class="table table-striped">
+    <tr>
+        <td>Event Name</td>
+        <td>@Model.EventName</td>
+    </tr>
+     <tr>
+        <td>Event Location</td>
+        <td>@Model.EventLocation</td>
+     </tr>
+     <tr>
+        <td>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </td>
+         <td>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-primary">Edit Event Details</a>
+            }
+            else if (User.IsInRole("User"))
+            {
+                <a asp-action="Create" asp-controller="Participant" class="btn btn-primary">Register for Event</a>
+            }
+        </td>
+     </tr>
+</table>

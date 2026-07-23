@@ -1,0 +1,35 @@
+@model IEnumerable<EventManagementWebApp.Models.Participant>
+@{
+    ViewData["Title"] = "Participants";
+}
+
+@if (!Model.Any())
+{
+    <h3 class="text-warning">No Participants to Display</h3>
+}
+else
+{
+    <h3 class="text-primary">List of Participants</h3>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Event Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.FullName</td>
+                    <td>@p.Event.EventName</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@p.Id">View Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
