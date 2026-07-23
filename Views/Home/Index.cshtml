@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Student Registration Web App</h1>
+    <p class="lead">A role-based student course registration system built with ASP.NET Core Identity.</p>
+
+    <div class="mt-5">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <h3>Hello, @User.Identity?.Name!</h3>
+            <p class="text-muted">You are logged in. Use the navigation bar to access your features.</p>
+        }
+        else
+        {
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">New User?</h5>
+                            <p class="card-text">Register to create your student account and enroll in courses.</p>
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Already Registered?</h5>
+                            <p class="card-text">Login to access your profile and course registrations.</p>
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-success">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="mt-5">
+        <h4>Available Courses</h4>
+        <a asp-controller="Courses" asp-action="Index" class="btn btn-outline-primary">Browse Courses</a>
+    </div>
+</div>

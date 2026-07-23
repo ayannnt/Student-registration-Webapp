@@ -1,0 +1,28 @@
+@model StudentRegistrationWebApp.Controllers.ProfileViewModel
+@{ ViewData["Title"] = "My Profile"; }
+<h2>My Profile</h2>
+<hr />
+<div class="card" style="max-width: 600px;">
+    <div class="card-body">
+        <h4 class="card-title">@Model.FullName</h4>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @(string.IsNullOrEmpty(Model.PhoneNumber) ? "N/A" : Model.PhoneNumber)</p>
+        <p><strong>Address:</strong> @(string.IsNullOrEmpty(Model.Address) ? "N/A" : Model.Address)</p>
+        <p><strong>Registered On:</strong> @Model.RegisteredOn.ToString("yyyy-MM-dd")</p>
+        <hr />
+        <p><strong>Registered Course:</strong>
+            @if (Model.RegisteredCourse != "Not Registered")
+            {
+                <span class="badge bg-success">@Model.RegisteredCourse (@Model.CourseCode)</span>
+            }
+            else
+            {
+                <span class="badge bg-warning text-dark">Not Registered</span>
+                <a asp-controller="CourseRegistration" asp-action="Register" class="btn btn-sm btn-primary ms-2">Register for a Course</a>
+            }
+        </p>
+    </div>
+</div>
+<div class="mt-3">
+    <a asp-action="Edit" class="btn btn-warning">Edit Profile</a>
+</div>

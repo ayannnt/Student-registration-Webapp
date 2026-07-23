@@ -1,0 +1,32 @@
+@model IEnumerable<StudentRegistrationWebApp.Models.Course>
+@{ ViewData["Title"] = "Register for a Course"; }
+<h2>Register for a Course</h2>
+<p class="text-muted">Students can register for <strong>only one</strong> course. Choose carefully.</p>
+<hr />
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Code</th>
+            <th>Course Name</th>
+            <th>Credits</th>
+            <th>Instructor</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td><strong>@c.CourseCode</strong></td>
+                <td>@c.CourseName</td>
+                <td>@c.Credits</td>
+                <td>@c.Instructor</td>
+                <td>
+                    <form asp-action="Register" asp-route-courseId="@c.CourseId" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Register for @c.CourseName?')">Register</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
