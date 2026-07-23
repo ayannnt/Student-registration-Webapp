@@ -2,7 +2,7 @@
 
 ASP.NET Core MVC application with role-based authentication and authorization using ASP.NET Core Identity.
 
-**Author:** Arjun Vashishtha
+**Author:** Ayan Tiwari
 
 > **Version 2** — this is the improved second iteration of the assignment. The first iteration was built on an Event Management domain; see [Version History](#version-history) below for what changed and why.
 
